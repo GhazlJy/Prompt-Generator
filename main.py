@@ -1,14 +1,15 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import google.genai as genai
 import os
 from fastapi.middleware.cors import CORSMiddleware
+from google.genai import Client
 
-# Configure Gemini API
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+# إنشاء العميل مباشرة مع مفتاح Gemini API
+client = Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 app = FastAPI()
 
+# إعداد CORS للسماح بالوصول من أي مصدر
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -16,6 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# نموذج البيانات الواردة
 class PromptRequest(BaseModel):
     idea: str
     audience: str = ""
@@ -43,7 +45,7 @@ You MUST:
 
     model_name = "gemini-2.5-flash"
 
-    response = genai.models.generate_content(
+    response = client.models.generate_content(
         model=model_name,
         contents=user_message_content,
         config={"system_instruction": system_instruction}
@@ -51,4 +53,3 @@ You MUST:
 
     final_prompt = response.text if hasattr(response, "text") else str(response)
     return {"prompt": final_prompt}
-
