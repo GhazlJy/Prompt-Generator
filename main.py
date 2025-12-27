@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import google.generativeai as genai
+import google.genai as genai
 import os
 from fastapi.middleware.cors import CORSMiddleware
 
