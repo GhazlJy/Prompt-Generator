@@ -4,8 +4,8 @@ import google.generativeai as genai
 import os
 from fastapi.middleware.cors import CORSMiddleware
 
-
-client = genai.Client(api_key=api_key)
+# Configure Gemini API
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 app = FastAPI()
 
@@ -43,7 +43,7 @@ You MUST:
 
     model_name = "gemini-2.5-flash"
 
-    response = client.models.generate_content(
+    response = genai.models.generate_content(
         model=model_name,
         contents=user_message_content,
         config={"system_instruction": system_instruction}
@@ -51,3 +51,4 @@ You MUST:
 
     final_prompt = response.text if hasattr(response, "text") else str(response)
     return {"prompt": final_prompt}
+
