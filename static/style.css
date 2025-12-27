@@ -1,0 +1,168 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111;
+  --card-bg: #fff;
+  --card-shadow: rgba(0,0,0,0.1);
+  --button-bg: #f0c040;
+  --button-hover: #e0b030;
+  --result-bg: #e0b030;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  text-align: center;
+}
+
+.header-right {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.header-right button, .header-right .lang-icon {
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+.input-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 8px var(--card-shadow);
+  text-align: left;
+}
+
+.input-card label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.input-card label i {
+  margin-left: 8px;
+  color: #555;
+}
+
+.input-card input,
+.input-card textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+button.generate-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  background: var(--button-bg);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+button.generate-btn:hover {
+  background: var(--button-hover);
+}
+
+.result-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 3px 8px var(--card-shadow);
+   
+}
+
+.result-card label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.result-card pre {
+  background: var(--result-bg);
+  padding: 10px;
+  border-radius: 8px;
+  min-height: 100px;
+  white-space: pre-wrap;
+  color: #fff;
+  overflow-x: auto;
+  text-align: left;
+}
+
+/* Dark mode */
+body.dark {
+  --bg-color: #111;
+  --text-color: #ffffff;
+  --card-bg: #222;
+  --card-shadow: rgba(0,0,0,0.6);
+  --button-bg: #f5a623;
+  --button-hover: #e5941c;
+  --result-bg: #e5941c;
+}
+body.dark {
+  background: #111;
+  color: #ffcc00;
+ 
+}
+#themeToggle i {
+  color: #ffcc00; 
+}
+body.dark #themeToggle i {
+  color: #ffffff; 
+}
+#themeToggle i {
+  font-size: 20px; 
+}
+
+
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+body.dark .field-label .num {
+  background: #f5a5238e;
+  color: #ffcc00;
+}
+.field-label .num {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background: #ffcc0063;      /* لون الدائرة */
+  color: #ffcc00;           /* لون الرقم */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}

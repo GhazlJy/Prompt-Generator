@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Prompt Architect AI</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+<div class="header-right">
+  <button id="themeToggle">
+    <i class="fa-solid fa-sun"></i>
+  </button>
+</div>
+
+<div class="title">
+  <i class="fa-sharp fa-solid fa-star"></i>
+  
+  Prompt Generator
+</div>
+
+<div class="input-card">
+ <label class="field-label">
+  <span class="num">1</span>
+  Core Idea
+</label>
+
+  <textarea id="idea" placeholder="Example: Daily study schedule for Al specialization ..."></textarea>
+</div>
+
+<div class="input-card">
+   <label class="field-label">
+  <span class="num">2</span>
+  Target Audience
+</label>
+
+  <input type="text" id="audience" placeholder="Example: Beginners, Developers, General Public ... ">
+</div>
+
+<div class="input-card">
+     <label class="field-label">
+  <span class="num">3</span>
+  TFew-Shot Example
+</label>
+  <textarea id="example" placeholder="If none, leave empty or type: Not Provided"></textarea>
+</div>
+
+<button class="generate-btn" onclick="generatePrompt()">Generate Prompt</button>
+
+<div class="result-card">
+  <label>Generated Prompt <i>📝</i></label>
+  <pre id="result"></pre>
+</div>
+
+
+
+<script>
+async function generatePrompt() {
+  const idea = document.getElementById("idea").value;
+  const audience = document.getElementById("audience").value;
+  const example = document.getElementById("example").value;
+
+  const response = await fetch("/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ idea, audience, example })
+  });
+
+  const data = await response.json();
+  document.getElementById("result").textContent = data.prompt;
+
+}
+
+const toggleBtn = document.getElementById("themeToggle");
+const icon = toggleBtn.querySelector("i");
+
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    icon.className = "fa-solid fa-moon";
+  } else {
+    icon.className = "fa-solid fa-sun";
+  }
+});
+
+</script>
+</body>
+</html>
+
+
+
